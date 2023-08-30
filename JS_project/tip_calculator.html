@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tip calculator</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        width: 50vw;
+      }
+      .container form > * {
+        width: 100%;
+      }
+      .container > form {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      button {
+        color: #ffffff;
+        margin-top: 2rem;
+        background-color: green;
+      }
+      label {
+        margin: 0.5rem 0;
+      }
+      span {
+        font-size: 1.5rem;
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Tip Calculator</h1>
+      <p>Enter the bill amount and bill percentage to calculate the total</p>
+      <form onsubmit="calculateTip()">
+        <label for="inp1">Bill Amount</label>
+        <input id="inp1" type="number" />
+        <label for="inp2">Tip Percentage</label>
+        <input id="inp2" type="number" />
+        <button type="submit">Calculate</button>
+      </form>
+      <p>Total<span id="Value"></span></p>
+      <script>
+        let input1 = document.getElementById("inp1");
+        let input2 = document.getElementById("inp2");
+        let val = document.getElementById("Value");
+        function calculateTip(e) {
+          e.preventDefault();
+          if (!input1.value || !input2.value) {
+            alert("please fill both values");
+            return;
+          }
+          let totalValue = Math.round(
+            +input1.value + (+input1.value / 100) * input2.value
+          );
+          val.innerText = " $" + totalValue;
+        }
+      </script>
+    </div>
+  </body>
+</html>
