@@ -12,9 +12,13 @@
         height: 100vh;
       }
       .container {
-        width: 50vw;
+        width: 30vw;
+        box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        border-radius: 1rem;
       }
-      .container form > * {
+      input,
+      button {
         width: 100%;
       }
       .container > form {
@@ -22,11 +26,18 @@
         justify-content: center;
         align-items: flex-start;
         flex-direction: column;
+        width: 100%;
       }
       button {
         color: #ffffff;
         margin-top: 2rem;
         background-color: green;
+        padding: 0.5rem;
+        border: none;
+        border-radius: 10px;
+      }
+      input {
+        padding: 0.3rem;
       }
       label {
         margin: 0.5rem 0;
@@ -41,20 +52,26 @@
     <div class="container">
       <h1>Tip Calculator</h1>
       <p>Enter the bill amount and bill percentage to calculate the total</p>
-      <form onsubmit="calculateTip()">
+
+      <form id="form">
         <label for="inp1">Bill Amount</label>
-        <input id="inp1" type="number" />
+        <input id="inp1" />
         <label for="inp2">Tip Percentage</label>
-        <input id="inp2" type="number" />
+        <input id="inp2" />
         <button type="submit">Calculate</button>
       </form>
       <p>Total<span id="Value"></span></p>
+
       <script>
         let input1 = document.getElementById("inp1");
         let input2 = document.getElementById("inp2");
         let val = document.getElementById("Value");
-        function calculateTip(e) {
-          e.preventDefault();
+
+        let form = document.getElementById("form");
+
+        input1.focus();
+        form.addEventListener("submit", function calculateTip(event) {
+          event.preventDefault();
           if (!input1.value || !input2.value) {
             alert("please fill both values");
             return;
@@ -63,7 +80,12 @@
             +input1.value + (+input1.value / 100) * input2.value
           );
           val.innerText = " $" + totalValue;
-        }
+
+          input1.value = input2.value = "";
+
+          input1.blur();
+          input2.blur();
+        });
       </script>
     </div>
   </body>
