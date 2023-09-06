@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <input type="date" id="date" />
+      <button id="btn">Calculate</button>
+    </form>
+
+    <script>
+      const dateInput = document.getElementById("date");
+      const btn = document.getElementById("btn");
+
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if (!dateInput.value) {
+          alert("please fill the date first!");
+          return;
+        }
+
+        const currentDate = new Date();
+        const DOB = new Date(dateInput.value);
+        const age = +currentDate - +DOB;
+        const totalMonth = Math.floor(age / 1000 / 60 / 60 / 24 / 30);
+        const year = Math.floor(totalMonth / 12);
+        const month = totalMonth % 12;
+        const day = Math.floor(age / 1000 / 60 / 60 / 24);
+        const hour = Math.floor(age / 1000 / 60 / 60);
+        const minute = Math.floor(age / 1000 / 60);
+        const second = Math.floor(age / 1000);
+
+        console.log(totalMonth, year, month);
+
+        console.log(
+          `You are ${year} ${year > 1 ? "years" : "year"} and ${month} ${
+            month > 1 ? "months" : "month"
+          } 
+or ${day} ${day > 1 ? "days" : "day"} 
+or ${hour} ${hour > 1 ? "hours" : "hour"} 
+or ${minute} ${minute > 1 ? "minutes" : "minute"} 
+or ${second} ${second > 1 ? "seconds" : "second"} old.`
+        );
+      });
+    </script>
+  </body>
+</html>
