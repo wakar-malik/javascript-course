@@ -4,16 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 30%;
+        margin: 5rem auto;
+        padding: 2rem;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      .main > h1 {
+        text-align: center;
+        margin: 0.6rem;
+      }
+      .main > form {
+        width: 30%;
+        margin: auto;
+      }
+      .main > form > input {
+        width: 110%;
+        margin-bottom: 0.5rem;
+      }
+      .main > form > p {
+        text-align: center;
+      }
+      #btn {
+        width: 65%;
+        margin-left: 20%;
+        padding: 0.3rem;
+        background-color: rgb(67, 131, 226);
+        color: white;
+        border: none;
+        border-radius: 0.2rem;
+      }
+    </style>
   </head>
   <body>
-    <form>
-      <input type="date" id="date" />
-      <button id="btn">Calculate</button>
-    </form>
-
+    <div class="main">
+      <h1>Age Calculator</h1>
+      <form>
+        <p>Enter your date of birth :</p>
+        <input type="date" id="date" />
+        <div>
+          <button id="btn">Calculate</button>
+        </div>
+        <p id="cal"></p>
+      </form>
+    </div>
     <script>
       const dateInput = document.getElementById("date");
       const btn = document.getElementById("btn");
+      const cal = document.getElementById("cal");
 
       btn.addEventListener("click", function (e) {
         e.preventDefault();
@@ -36,15 +78,13 @@
 
         console.log(totalMonth, year, month);
 
-        console.log(
-          `You are ${year} ${year > 1 ? "years" : "year"} and ${month} ${
-            month > 1 ? "months" : "month"
-          } 
+        cal.innerText = `You are ${year} ${
+          year > 1 ? "years" : "year"
+        } and ${month} ${month > 1 ? "months" : "month"} 
 or ${day} ${day > 1 ? "days" : "day"} 
 or ${hour} ${hour > 1 ? "hours" : "hour"} 
 or ${minute} ${minute > 1 ? "minutes" : "minute"} 
-or ${second} ${second > 1 ? "seconds" : "second"} old.`
-        );
+or ${second} ${second > 1 ? "seconds" : "second"} old.`;
       });
     </script>
   </body>
