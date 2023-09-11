@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dice Roll</title>
+    <style>
+      .dice-img {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="" alt="dice-img" class="dice-img" />
+    <button class="num-btn">Get Number</button>
+
+    <ul></ul>
+    <script>
+      const numBtn = document.querySelector(".num-btn");
+      const diceImg = document.querySelector(".dice-img");
+      const list = document.querySelector("ul");
+
+      const numList = [];
+
+      function renderImage(num) {
+        if (num === 1) {
+          diceImg.setAttribute("src", `./images/dice/dice-${num}.png`);
+        } else if (num === 2) {
+          diceImg.setAttribute("src", `./images/dice/dice-${num}.png`);
+        } else if (num === 3) {
+          diceImg.setAttribute("src", `./images/dice/dice-${num}.png`);
+        } else if (num === 4) {
+          diceImg.setAttribute("src", `./images/dice/dice-${num}.png`);
+        } else if (num === 5) {
+          diceImg.setAttribute("src", `./images/dice/dice-${num}.png`);
+        } else if (num === 6) {
+          diceImg.setAttribute("src", `./images/dice/dice-${num}.png`);
+        }
+      }
+
+      function getNumber() {
+        let num = Math.floor(Math.random() * 6 + 1); // 0.1, 0.2, 0.3, 0.5 .... 0.9
+
+        renderImage(num);
+
+        numList.push(num);
+        list.innerHTML = "";
+
+        numList.forEach((element, index) => {
+          if (index === 0) return;
+          const li = document.createElement("li");
+          const img = document.createElement("img");
+          const span = document.createElement("span");
+
+          img.setAttribute("src", `./images/dice/dice-${element}.png`);
+          img.setAttribute("width", `30px`);
+          img.setAttribute("height", `30px`);
+          span.setAttribute("style", `font-size:30px:margin-right:40px`);
+
+          span.innerText = index;
+
+          li.appendChild(span);
+          li.appendChild(img);
+
+          list.appendChild(li);
+        });
+      }
+      getNumber();
+
+      numBtn.addEventListener("click", getNumber);
+    </script>
+  </body>
+</html>
